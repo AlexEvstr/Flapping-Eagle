@@ -8,7 +8,7 @@ namespace evstr.GameConfig
     [Serializable]
     public class GameData : IGameData
     {
-        private int _score;
+        [NonSerialized] private int _score;
         private bool _audioStatus;
         private GameDifficulty _gameDifficulty = GameDifficulty.EASY;
 
