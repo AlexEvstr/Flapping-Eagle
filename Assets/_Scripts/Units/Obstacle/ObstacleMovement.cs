@@ -3,6 +3,7 @@ using evstr.Generals;
 using evstr.GUI;
 using evstr.ObjectDetector;
 using evstr.States;
+using evstr.Audio;
 using UnityEngine;
 using Zenject;
 
@@ -18,12 +19,12 @@ namespace evstr.Obstacle
 
         private IUpdateLoop _updater;
 
-        public void Construct(IUpdateLoop update, StateMachine stateMachine, IGameData gameData)
+        public void Construct(IUpdateLoop update, StateMachine stateMachine, IGameData gameData, AudioService audioService)
         {
             _updater = update;
 
-            _obstacleDetecterOne.Construct(stateMachine);
-            _obstacleDetecterTwo.Construct(stateMachine);
+            _obstacleDetecterOne.Construct(stateMachine, audioService);
+            _obstacleDetecterTwo.Construct(stateMachine, audioService);
             _scoreZoneDetector.Construct(gameData);
             _updater.OnUpdate += Movement;
         }

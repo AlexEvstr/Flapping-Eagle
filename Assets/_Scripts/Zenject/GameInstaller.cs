@@ -1,6 +1,7 @@
 using evstr.GameConfig;
 using evstr.Generals;
 using evstr.GUI;
+using evstr.Audio;
 using evstr.States;
 using System;
 using UnityEngine;
@@ -12,9 +13,10 @@ namespace evstr.Zenject
     {
         public event Action OnUpdate;
 
-        public GUIService _guiService;
-        public ObstacleSpawner _obstacleSpawner;
-        public ResourceController _resourceController;
+        [SerializeField] private GUIService _guiService;
+        [SerializeField] private ObstacleSpawner _obstacleSpawner;
+        [SerializeField] private ResourceController _resourceController;
+        [SerializeField] private AudioService _soundManager;
 
         private GameController _gameController;
 
@@ -27,6 +29,7 @@ namespace evstr.Zenject
             Container.BindInstance(_guiService);
             Container.BindInstance(_obstacleSpawner);
             Container.BindInstance(_resourceController);
+            Container.BindInstance(_soundManager);
             Container.BindInstance<IUpdateLoop>(this);
             Container.Bind<IInputSystem>().To<InputSystemAndroid>().AsSingle();
 

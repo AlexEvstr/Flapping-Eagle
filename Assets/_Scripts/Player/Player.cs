@@ -1,5 +1,6 @@
 using evstr.Generals;
 using evstr.ObjectDetector;
+using evstr.Audio;
 using UnityEngine;
 using Zenject;
 
@@ -13,14 +14,16 @@ namespace evstr.Player
 
         private IFlap _flapBehaviour;
         private IInputSystem _inputSystem;
+        private AudioService _audioService;
 
         private float _forceFlap = 5f;
         public float ForceFlap => _forceFlap;
 
         [Inject]
-        private void Construct(IInputSystem inputSystem)
+        private void Construct(IInputSystem inputSystem, AudioService audioService)
         {
             _inputSystem = inputSystem;
+            _audioService = audioService;
 
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _flapBehaviour = new PlayerBehaviour(this);
@@ -29,11 +32,13 @@ namespace evstr.Player
         private void OnEnable()
         {
             _inputSystem.OnTapped += _flapBehaviour.Flap;
+            _inputSystem.OnTapped += _audioService.PlayFlapSound;       
         }
 
         private void OnDisable()
         {
             _inputSystem.OnTapped -= _flapBehaviour.Flap;
+            _inputSystem.OnTapped -= _audioService.PlayFlapSound;
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

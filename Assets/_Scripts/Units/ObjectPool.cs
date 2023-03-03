@@ -5,6 +5,7 @@ using evstr.Generals;
 using evstr.Obstacle;
 using evstr.GameConfig;
 using evstr.States;
+using evstr.Audio;
 
 public class ObjectPool : MonoBehaviour
 {
@@ -17,16 +18,18 @@ public class ObjectPool : MonoBehaviour
     private IUpdateLoop _updater;
     private StateMachine _stateMachine;
     private IGameData _gameData;
+    private AudioService _audioService;
 
     public static ObjectPool Instance;
 
     [Inject]
-    private void Construct(IUpdateLoop update, StateMachine stateMachine, IGameData gameData, ResourceController resourceController)
+    private void Construct(IUpdateLoop update, StateMachine stateMachine, IGameData gameData, ResourceController resourceController, AudioService audioService)
     {
         _updater = update;
         _stateMachine = stateMachine;
         _gameData = gameData;
         _resourceController = resourceController;
+        _audioService = audioService;
     }
 
     private void Awake()
@@ -66,7 +69,7 @@ public class ObjectPool : MonoBehaviour
     private GameObject Create()
     {
         var obj = Object.Instantiate(_objectToPool);
-        obj.GetComponent<ObstacleMovement>().Construct(_updater, _stateMachine, _gameData);
+        obj.GetComponent<ObstacleMovement>().Construct(_updater, _stateMachine, _gameData, _audioService);
         obj.SetActive(false);
         return obj;
     }
