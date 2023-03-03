@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 namespace evstr
 {
-    public class RestartStateGame : MonoBehaviour, IState
+    public class RestartStateGame : IState
     {
         private GameController _gameController;
 

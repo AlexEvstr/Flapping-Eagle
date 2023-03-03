@@ -33,8 +33,6 @@ namespace evstr.Zenject
             _gameController = new GameController(gameData);
             Container.BindInstance(_gameController);
 
-            Debug.Log(gameData.GameDifficulty);
-
             Container.Bind<StateMachine>().AsSingle();
         }
 

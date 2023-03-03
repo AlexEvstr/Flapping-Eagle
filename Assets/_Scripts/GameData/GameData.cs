@@ -29,8 +29,7 @@ namespace evstr.GameConfig
             set => _gameDifficulty = value;
         }
 
-        [NonSerialized]
-        private GUIService _guiService;
+        [NonSerialized] private GUIService _guiService;
  
         public void TransferDependency(GUIService guiService)
         {
