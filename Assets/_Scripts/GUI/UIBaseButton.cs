@@ -15,7 +15,7 @@ namespace evstr.GUI
             _button = GetComponent<Button>();
         }
 
-        private void OnEnable()
+        public virtual void OnEnable()
         {
             _button.onClick.AddListener(OnClick);
         }
