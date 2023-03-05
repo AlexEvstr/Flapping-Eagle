@@ -38,6 +38,6 @@ namespace evstr.GUI
             }
             _panleSetting = transform.parent.GetComponent<UIPanelSettings>();
         }
-    }
 #endif
+    }
 }
