@@ -9,12 +9,18 @@ namespace evstr.GameConfig
     public class GameData : IGameData
     {
         [NonSerialized] private int _score;
+        private int _highScore;
         private bool _audioStatus;
         private GameDifficulty _gameDifficulty = GameDifficulty.EASY;
 
         public int GetScore
         {
             get => _score;
+        }
+
+        public int GetHighScore
+        {
+            get => _highScore;
         }
 
         public bool AudioStatus 
@@ -40,6 +46,15 @@ namespace evstr.GameConfig
         {
             _score += 1;
             _guiService.UpdateTextScore(_score);
+        }
+
+        public void IncreaseHighScore()
+        {
+            if(_highScore < _score)
+            {
+                _highScore = _score;
+            }
+            _guiService.UpdateTextHighScore(_highScore);
         }
 
     }

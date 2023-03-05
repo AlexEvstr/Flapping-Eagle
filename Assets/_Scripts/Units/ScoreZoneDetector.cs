@@ -12,11 +12,13 @@ namespace evstr.ObjectDetector
         public void Construct(IGameData gameData)
         {
             _gameData = gameData;
+            _gameData.IncreaseHighScore();
         }
 
         public void OnCollision()
         {
             _gameData.IncreaseScore();
+            _gameData.IncreaseHighScore();
         }
     }
 }

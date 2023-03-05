@@ -10,7 +10,7 @@ namespace evstr.GUI
         [SerializeField] private GameObject _panelGameOver;
         [SerializeField] private GameObject _panelMainMenu;
         [SerializeField] private Text _textScore;
-
+        [SerializeField] private Text _textHighscore;
 
         private void OnEnable()
         {
@@ -30,6 +30,11 @@ namespace evstr.GUI
         public void UpdateTextScore(int score)
         {
             _textScore.text = score.ToString();
+        }
+
+        public void UpdateTextHighScore(int highScore)
+        {
+            _textHighscore.text = highScore.ToString();
         }
     }
 }
